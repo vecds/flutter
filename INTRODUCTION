@@ -1,0 +1,152 @@
+Flutter
+Flutter is an open-source UI (User Interface) software development kit (SDK) created by Google.
+It is used to build natively compiled applications for mobile (Android & iOS), web, desktop, 
+and embedded devices from a single codebase.
+The Core Problem it Solves: 
+Traditionally, if you wanted an app on both Android and iOS, you had to write it twice:
+once in Kotlin/Java (Android) and once in Swift/Objective-C (iOS). 
+Flutter allows you to write the code once and deploy it everywhere.
+
+"Everything is a Widget"
+
+In Flutter, the user interface is built entirely out of Widgets.
+A widget is a declaration of what the UI should look like.
+Structural elements (like a button or menu) are widgets.
+Stylistic elements (like a font or color scheme) are widgets.
+Layout aspects (like padding or centering) are also widgets.
+
+Widgets nest inside each other to create a hierarchical structure called the Widget Tree.
+
+The Two Core Types of Widgets:
+StatelessWidget:
+Concept: Immutable. Their appearance cannot change while the app is running based on user behavior or data updates.
+Examples: A static Text label, an Icon, or a company logo.
+
+StatefulWidget:
+Concept: Dynamic. They maintain a "State" object that can change over time. When the state changes, the widget rebuilds itself to show the new data.
+Examples: A slider, a checkbox, a counter button, or a text input field.
+
+Key Feature: Hot Reload vs. Hot Restart
+Flutter drastically speeds up development time with these two features:
+Hot Reload: Inject updated source code files into the running Dart Virtual Machine. It updates the UI in under a 
+    second without losing the app's current state (e.g., if you are 3 screens deep into testing a form, you won't get kicked back to the login page).
+Hot Restart: Fully restarts the app, destroying the current state and rebuilding the widget tree from scratch.
+
+
+import 'package:flutter/material.dart'; // Imports pre-made Google Material widgets
+
+void main() {
+  runApp(const MyApp()); // The entry point of the application
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Student Intro App'),
+        ),
+        body: const Center(
+          child: Text('Welcome to Flutter!'),
+        ),
+      ),
+    );
+  }
+}
+
+
+MaterialApp: The root widget that establishes the design scheme (Material Design) and configures navigation routes.
+Scaffold: Provides a baseline structural layout for a mobile screen. It gives you ready-made properties for an appBar, 
+          a body, a floatingActionButton, and a navigation drawer.
+Center: A layout widget that centers its child widget exactly in the middle of the available space.
+
+Advantages and Disadvantages 
+Advantages:
+Single Codebase: Saves time, effort, and cost by avoiding duplicate codebases.
+Native Performance: Compiles directly to native machine code.
+Rich Catalog of Widgets: Huge ecosystem of pre-designed widgets following Material Design (Google) and Cupertino (Apple) standards.
+Strong Community Support: Highly popular on GitHub and StackOverflow, backed heavily by Google.
+Disadvantages:
+Larger File Sizes: Because the Flutter engine is bundled directly into the app package, the initial installation file (.apk or .ipa) is usually larger than a purely native app.
+New Language Barrier: Requires learning Dart instead of sticking to standard web tools (HTML/CSS) or native tools.
+
+
+Prerequisites
+Before starting, make sure you have:
+Flutter SDK installed on your computer.
+VS Code installed.
+The Flutter and Dart extensions installed inside VS Code (go to the Extensions tab on the left, search for "Flutter", and click Install).
+
+Step 1: Create a New Flutter Project
+Open VS Code.
+Open the Command Palette by pressing Ctrl + Shift + P (Windows/Linux) or Cmd + Shift + P (Mac).
+Type flutter and select Flutter: New Project.
+Select Application from the list.
+Choose a folder on your computer where you want to save your project.
+Type a name for your app (e.g., my_first_app) and hit Enter.
+Note: Use lowercase letters and underscores only. No spaces or special characters!
+VS Code will now generate all the necessary files. This might take a minute the first time.
+
+Step 2: Understand the Project Folder Structure
+Once the project loads, look at the Explorer sidebar on the left. While there are many folders, you only need to focus on two things starting out:
+lib/ folder: This is the most important folder. All your Flutter code lives here.
+lib/main.dart: The main entry point of your application. This is the file you will be editing.
+pubspec.yaml: The configuration file where you manage assets (images, fonts) and add external packages/libraries.
+
+📝 Step 3: Write Your Code
+Open lib/main.dart. You will see a lot of default template code with comments. Let’s clear that out and write a clean, simple "Hello World" app from scratch.
+Delete everything in main.dart and paste this code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false, // Removes the red debug banner
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('My First App'),
+          backgroundColor: Colors.blueGrey,
+        ),
+        body: const Center(
+          child: Text(
+            'Hello, Flutter!',
+            style: TextStyle(fontSize: 28, color: Colors.blueGrey),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Step 4: Choose Your Device (Target)
+Before running the app, you need to tell VS Code where to display it.
+Look at the bottom-right corner of the VS Code status bar. You will see the current target device (it might say something like Windows (windows-x64), Chrome, or No Device).
+Click on that device name.
+A dropdown menu will appear at the top of the screen.
+Select your preferred target:
+Web (Chrome / Edge): The fastest and easiest way to test without setting up emulators.
+Android Emulator / iOS Simulator: If you have Android Studio or Xcode installed.
+Windows / macOS (Desktop): Runs the app as a native desktop window.
+
+Step 5: Run the App
+Look at the top-right corner of VS Code and look for the Play icon (or press F5 on your keyboard).
+Click Run without Debugging (or Start Debugging).
+The Debug Console at the bottom of VS Code will open up, showing the build progress.
+After a few seconds, your app will launch on your selected device!
+
+Step 6: Test "Hot Reload"
+Now for the magic of Flutter! Keep your app running on the screen alongside VS Code:
+In main.dart, change the text 'Hello, Flutter!' to something else, like 'Coding is fun!'.
+Press Ctrl + S (or Cmd + S on Mac) to save the file.
+
