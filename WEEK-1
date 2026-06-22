@@ -3,25 +3,40 @@
 To install Flutter and the Dart SDK, you can follow these steps: 
 a) Download Flutter: Visit the Flutter website's Get Started page and download the Flutter SDK for your 
   operating system (Windows, macOS, or Linux).
+
 b) Extract the Flutter SDK: After downloading, extract the 
   contents of the compressed file to a location on your computer where you want to store the Flutter SDK. 
 For example, you can extract it to C:\flutter on Windows, /Users/<your-username>/flutter on macOS, or ~/flutter on Linux. 
+
 c) Add Flutter to your PATH: Update your system's PATH variable to include the Flutter bin directory. 
 This step allows you to execute Flutter commands from any directory in your terminal or command prompt. 
+
 The precise steps for updating the PATH vary depending on your operating system. 
+
 Windows: From the Start search bar, type 'env' and select 'Edit the system environment variables'. 
 Click on 'Environment Variables'. Under 'System Variables', find the 'Path' variable, select it, and click 'Edit'.
 Click 'New' and add the path to the bin directory inside the Flutter directory (e.g., C:\flutter\bin). 
-Click 'OK' on all open dialogs to save your changes. macOS and Linux: Open a terminal window. Run the following 
-command to open the profile file associated with your terminal (.bash_profile, .bashrc, .zshrc, or similar): 
+Click 'OK' on all open dialogs to save your changes. 
+
+macOS and Linux: 
+Open a terminal window. 
+Run the following command to open the profile file associated with your terminal (.bash_profile, .bashrc, .zshrc, or similar): 
 nano ~/.bash_profile Add the following line at the end of the file: export PATH="$PATH:/path/to/flutter/bin" 
-Press Ctrl + X to exit, then Y to save changes, and Enter to confirm. d) Verify the Flutter installation: 
+Press Ctrl + X to exit, then Y to save changes, and Enter to confirm. 
+
+d) Verify the Flutter installation: 
 Open a new terminal window, and run the following command to  verify that Flutter is properly installed: 
-flutter --version This command should display the Flutter version and other relevant information if the installation was successful.
+
+flutter --version 
+This command should display the Flutter version and other relevant information if the installation was successful.
+
 e) Install Flutter dependencies: Depending on your development environment, you may need to install additional dependencies,
-such as Android Studio to fully set up your Flutter development environment. f) Download Dart SDK (if not bundled with Flutter): 
-Flutter comes with the Dart SDK bundled, so if you've installed Flutter, you should have the Dart SDK as well. However, 
-if you need to install Dart separately, you can download it from the Dart "SDK archive". 
+such as Android Studio to fully set up your Flutter development environment. 
+
+f) Download Dart SDK (if not bundled with Flutter): 
+Flutter comes with the Dart SDK bundled, so if you've installed Flutter, you should have the Dart SDK as well. 
+However, if you need to install Dart separately, you can download it from the Dart "SDK archive". 
+
 
 
 b) Write a simple dart program to understand the language basics 
