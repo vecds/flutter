@@ -1,3 +1,41 @@
+2-a)Explore various flutter widgets (Text,Image,Container,etc..)
+b) Implement different layout structures using Row,Column,and Stack widgets
+
+a)
+TEXT:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false, // Removes the red debug banner
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('My First App'),
+          backgroundColor: Colors.blueGrey,
+        ),
+        body: const Center(
+          child: Text(
+            'Hello, Flutter!',
+            style: TextStyle(fontSize: 28, color: Colors.blueGrey),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+OUTPUT:
+
+
 IMAGE:
 STEP-1: create a folder in your project for IMAGE
         download and copy images into your folder
@@ -86,3 +124,86 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+OUTPUT:
+
+b) 1. Row Layout: 
+import 'package:flutter/material.dart';
+
+void main() { 
+  runApp(MyApp());  
+}
+class MyApp extends StatelessWidget {
+ @override
+ Widget build(BuildContext context) { 
+   return MaterialApp( 
+     home: Scaffold( 
+       appBar: AppBar(
+       title: Text('Row Layout'),
+  ),
+     body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[ 
+   Container( 
+     color: Colors.red,
+      width: 100,
+      height: 100,
+  ),
+   Container( color: Colors.green,
+     width: 100,
+     height: 100,
+  ),
+    Container( 
+      color: Colors.blue, 
+      width: 100,
+      height: 100,
+   ),
+       ],
+      ),
+     ),
+   );
+ }
+}
+
+OUTPUT:
+
+
+2. Column Layout: 
+import 'package:flutter/material.dart';
+void main() { 
+  runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+ @override
+  Widget build(BuildContext context) { 
+    return MaterialApp( 
+      home: Scaffold( 
+        appBar: AppBar(
+        title: Text('Column Layout'),
+        ),
+        body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[ 
+        Container(
+          color: Colors.red, 
+          width: 100,
+          height: 100,
+        ),
+        Container( 
+          color: Colors.green, 
+          width: 100,
+          height: 100,
+        ),
+        Container( 
+          color: Colors.blue, 
+          width: 100,
+          height: 100,
+        ),
+      ],
+    ),
+   ),
+  );
+ }
+}
+
+OUTPUT:
