@@ -18,7 +18,7 @@ Google
 Sky is the first version of Flutter which ran on Android OS. It was announced at the 2015 Dart developer summit 
 with the stated goal of being able to render consistently at 120 frames per second.
 
-->Can you tell us the four main elements of Flutter?
+->what are the four main elements of Flutter?
 The four main elements of Flutter are:
 Flutter engine
 Widgets
