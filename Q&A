@@ -1,0 +1,182 @@
+->What is Flutter?
+Flutter is an open source software development kit (SDK) UI used for cross-platform applications 
+from a single codebase. 
+Flutter is primarily used for creating natively compiled, multi-platform applications across iOS 
+and Android seamlessly.
+
+
+->What is Dart?
+Dart is a general-purpose, object-oriented programming language that was initially developed by 
+Google in 2011. 
+It is designed to be fast, efficient, and scalable, making it ideal for building a wide range of 
+applications, including web and mobile apps, server-side applications, and command-line tools.
+
+->Flutter is developed by which company?
+Google
+
+->What was the first version of Flutter which ran on an Android operating system?
+Sky is the first version of Flutter which ran on Android OS. It was announced at the 2015 Dart developer summit 
+with the stated goal of being able to render consistently at 120 frames per second.
+
+->Can you tell us the four main elements of Flutter?
+The four main elements of Flutter are:
+Flutter engine
+Widgets
+Design-specific widgets
+Foundation Library
+
+->what are the four main elements of Flutter?
+The four main elements of Flutter are:
+Flutter engine
+Widgets
+Design-specific widgets
+Foundation Library
+
+->Flutter is written in which language?
+Flutter was written in the Dart language. While writing and debugging an application, 
+Flutter runs in the Dart virtual machine, which features a just-in-time execution engine.
+
+->What does the acronym SDK stand for?
+Software Development Kit is a set of software tools and programs provided by software and 
+hardware vendors that developers can use to develop applications for specific platforms. 
+An SDK helps developers easily integrate their apps with a vendor's services. SDKs can include 
+APIs (Application Programming Interfaces), sample code, documentation, and other resources that 
+help developers create software applications.
+
+->name some best editors for Flutter development?
+Some popular IDEs (Integrated Development Environment) for Flutter include the following:
+Android Studio -IntelliJ Idea - Emac  -  Visual Studio -  Codemagic
+
+->how many kinds of widgets there are in Flutter?
+There are two main types of widgets in Flutter. These include:
+StatelessWidget- It does not have any state information. It is static throughout its lifecycle. 
+Examples are Row, Text, Column, and Container.
+StatefulWidget- It has state information. It contains two classes: the state object and the Widget.
+It is dynamic because it can change the inner data during the Widget's lifetime. 
+Examples are Radio, Form, Checkbox, and TextField.
+
+->Name the different types of build modes in Flutter.
+There are three types of build modes in Flutter. These include:
+Debug- It is used to test the apps. On Android Studio, you can find a green 
+play button on the top panel.
+“Flutter run”
+Profile- In this mode, some debugging ability is maintained - enough to profile 
+your app's performance, and also, it has the performance as the release mode.
+“Flutter run -- profile”
+Release- It is used for deploying the app on marketplaces.
+“Flutter run - - release”
+
+->Name some popular apps that use Flutter.
+Some of the most popular apps that employ Flutter include:
+Google Ads
+Hamilton
+KlasterMe
+Reflectly
+
+-> which function compiles and updates the app?
+In Flutter, there are several functions and commands that can be used to 
+compile and update the app. However, the most commonly used function for 
+this purpose is hot reload.
+hot reload is a development feature in Flutter that allows you to update 
+your app's code in real-time, without restarting the entire app.
+
+-> which function is accountable for starting the program?
+main () function is used to start a program. This function is highly critical
+as, without it, one cannot write any function.
+	
+->state a few examples of stateless widget?
+Some examples of a stateless widget include the following:
+Text - This displays a string of text with a single style.
+Container: This widget can contain other widgets and provide padding, margins, 
+and other layout properties.
+Icon - This is used for the list of available material icons that can be used with this class.
+
+
+->What is used to import packages for your project?
+pubspec.yaml file is used to import packages in the Dart code. It allows us
+to set the constraints for the application. This file contains project dependencies, general 
+project settings, and project assets.
+
+
+
+->Why is Flutter preferred over other mobile app developing tools?
+Flutter is preferred over other mobile app development tools like Java 
+and React Native due to a myriad of reasons. A few of them are:
+Flutter supports cross-platform development
+Programming in Flutter is extremely easy and flexible
+The building process in Flutter is much faster than that in all its competitors
+
+->What are packages and plugins in Flutter?
+A package is a set of classes, interfaces, and sub-packages that allow users to 
+create modular code that can be shared easily. Instead of starting from scratch, 
+using packages can help construct applications fast. In Flutter, you may use a 
+package to add new widgets or functionality to an app.
+On the other hand, a plugin is a piece of software that enhances your app's 
+functionality. Plugins play a crucial role in the Flutter ecosystem.
+
+->What are the limitations of Flutter?
+Since Flutter is still a relatively new tool, it has some limitations. They are as follows:
+The number of third-party libraries is very small
+The release size of Flutter is larger than expected
+Flutter requires to be used along with another OOP language, Dart which cannot compete
+with other OOP languages such as Java, C#
+Due to Flutter’s limited complexity, mobile ad platforms do not support it
+Flutter is still not used by a wide audience
+
+->Why does it generally take a long time to develop a Flutter app?
+Because Flutter generates a device-specific IPA or APK file, building a Flutter
+application takes substantially longer the first time. This method, which normally takes a 
+long time, uses Xcode and Gradle to build a file.
+
+
+->What is pubspec.yaml file?
+While creating a Flutter project, a particular type of file is always included 
+at the top of the project. This file contains information about a project's dependencies,
+such as packages and their versions, typefaces, and so on. It ensures that the package 
+version is the same the next time you create the project. You can also place restrictions 
+on the app. This project's configuration file will be used a lot while working with the Flutter 
+project. This specification is written in YAML, a human-readable markup language.
+
+
+->What’s the use of Navigation.push in Flutter?
+The role of Navigation.push in Flutter is to add a route to a bundle of other routes which are managed by the navigator.
+
+
+->What's the role of BuildContext in Flutter?
+In Flutter, the BuildContext is an object that provides access to the location of a widget in 
+the widget tree hierarchy and to various services such as Theme, MediaQuery, and Navigator. 
+The BuildContext is used by widgets to access the properties of their parent widget, such as 
+its size, position, and theme. It is is also used to navigate between screens using the Navigator widget.
+
+
+-> which class is responsible for implementing the basic material design visual layout structure
+for an app in Flutter?
+The scaffold class is a widget in Flutter that is used to implement the basic material design 
+visual layout structure. The scaffold class makes it faster to create a general-purpose mobile 
+application. Moreover, it contains almost everything we need to create a functional and responsive Flutter application
+
+
+
+
+->What’s the core of the Flutter layout mechanism?
+The main core of the Flutter layout mechanism is the Widgets. The widgets are the building blocks
+of the user interface, and they are arranged in a tree-like structure known as the widget tree. 
+The image, text, icon, and even the layout of your application are all widgets.
+
+
+->Which widget can be used to display one after another in scroll format?
+The ListView Widget is used to display a large number of items as a scrollable list. ListView is 
+an advanced version of the Column widget that automatically provides scrolling when the list of 
+items won’t fit on the screen.
+
+
+
+
+->Is Flutter a front-end framework or back-end?
+Flutter is primarily a front-end framework. It provides tools and widgets to build beautiful and
+engaging user interfaces, and it supports various platforms such as iOS, Android, and the web. 
+However, the framework does provide some back-end functionalities. Flutter applications can communicate with web APIs or connect to backend services through third-party packages or plugins.
+
+
+
+
