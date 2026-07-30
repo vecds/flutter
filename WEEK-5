@@ -1,5 +1,5 @@
 5. a) Learn about stateful and stateless widgets.
-b) Implement state management using set State and Provider.
+b) Implement state management using setState and Provider.
 
 The State is the information that can be read synchronously when the widget is 
   built and might change during the lifetime of the widget.
