@@ -56,23 +56,163 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
-  // Use modern syntax for keys
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Flutter Stateful Widget',
+      home: HomeScreen(), 
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
-    // MaterialApp establishes the core theme, navigation, and core UI rules
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello, Flutter!'),
+    return const Scaffold(
+      body: Center(
+        child: Text('Hello, Flutter!'),
+      ),
+    );
+  }
+}
+
+By extending StatefulWidget, the MyApp class is split into an immutable 
+  configuration widget and a companion dynamic State class (_MyAppState), 
+  a structure that gives the app the ability to store mutable variables and 
+  dynamically redraw the user interface over time.
+
+
+b) State management using setState :
+setState() is the fundamental method used to update the user interface (UI) when 
+  the internal data of a StatefulWidget changes. Calling it tells the framework that 
+  the widget's state is "dirty", which schedules a rebuild of that widget and its 
+  children so the screen displays the updated values.
+
+main.dart:
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MaterialApp(home: CounterScreen()));
+
+class CounterScreen extends StatefulWidget {
+  const CounterScreen({super.key});
+
+  @override
+  State<CounterScreen> createState() => _CounterScreenState();
+}
+
+class _CounterScreenState extends State<CounterScreen> {
+  
+int _counter = 0; 
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('setState Example')),
+      body: Center(
+        child: Text(
+          'Button pressed $_counter times.',
+          style: const TextStyle(fontSize: 24),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+       
+        onPressed: () {
+          setState(() {
+            _counter++; 
+          });
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+State management using Provider  :
+Provider is a tool for Flutter apps that holds your app's data in one central place 
+  and automatically updates the screen whenever that data changes.Instead of manually 
+  passing data from widget to widget, Provider allows any screen or button in your app 
+  to instantly grab, read, or change that information from a single, shared source.
+
+Core Components 
+ChangeNotifier: A class that encapsulates your app's data and business logic. 
+                Calling notifyListeners() automatically signals dependent widgets to update.
+ChangeNotifierProvider: A widget that instantiates and exposes your ChangeNotifier class to its child components.
+Consumer: A widget that listens to a provider and selectively rebuilds only its immediate children when data changes.
+
+ First, integrate the package into your project's configuration file. pubspec.yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2  # Use the latest version from pub.dev
+
+main.dart:
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(
+    // Wrap the entire app in the Provider
+    ChangeNotifierProvider(
+      create: (context) => CounterModel(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+// Define the data and logic
+class CounterModel extends ChangeNotifier {
+  int count = 0;
+
+  void increment() {
+    count++;
+    notifyListeners(); // This tells the UI to update
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: CounterScreen(),
+    );
+  }
+}
+
+// Display and change the data in the UI
+class CounterScreen extends StatelessWidget {
+  const CounterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Read the current count value from the Provider
+    final counter = context.watch<CounterModel>();
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Provider Sample')),
+      body: Center(
+        child: Text(
+          'Clicks: ${counter.count}',
+          style: const TextStyle(fontSize: 24),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+       licked
+        onPressed: () => context.read<CounterModel>().increment(),
+        child: const Icon(Icons.add),
       ),
     );
   }
