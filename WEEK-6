@@ -1,0 +1,72 @@
+6. a) Create custom widgets for specific UI elements
+b) Apply styling using themes and custom styles
+
+a) Creating custom widgets in Flutter is the standard way to build a scalable design system and avoid repetitive code. 
+Custom widgets allow you to:
+Reuse components/widgets: Write once, use everywhere.
+Improve maintainability: Fix one widget, it’s fixed everywhere.
+
+main.dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: DashboardScreen(),
+    );
+  }
+}
+
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Dashboard'),
+      ),
+      body: const Column(
+        children: [
+          Text("USERS"),
+          Row(
+            children: [
+              CustomUserAvatar(initials: "JD", name: "John Doe"),
+              CustomUserAvatar(initials: "AS", name: "Alice Smith"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomUserAvatar extends StatelessWidget {
+  final String initials;
+  final String name;
+
+  const CustomUserAvatar({
+    super.key,
+    required this.initials,
+    required this.name,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        CircleAvatar(
+          child: Text(initials),
+        ),
+        Text(name),
+      ],
+    );
+  }
+}
