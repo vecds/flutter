@@ -38,8 +38,8 @@ class DashboardScreen extends StatelessWidget {
           Text("USERS"),
           Row(
             children: [
-              CustomUserAvatar(initials: "JD", name: "John Doe"),
-              CustomUserAvatar(initials: "AS", name: "Alice Smith"),
+              CustomUserAvatar(initials: "VEC", name: "John VAAGDEVI ENGINEERING COLLEGE"),
+              CustomUserAvatar(initials: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING"),
             ],
           ),
         ],
@@ -70,3 +70,141 @@ class CustomUserAvatar extends StatelessWidget {
     );
   }
 }
+
+
+b) Apply styling using themes and custom styles.
+
+main.dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Themed Custom Widgets',
+      
+      // 1. Defining the Global Application Theme
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xff6366f1), // Indigo base seed
+          brightness: Brightness.light,
+        ),
+        scaffoldBackgroundColor: const Color(0xfff8fafc), // Light slate gray background
+        
+        // Customizing default text themes globally
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontWeight: FontWeight.bold, letterSpacing: -0.5),
+          bodyMedium: TextStyle(color: Color(0xff334155), fontSize: 14),
+        ),
+      ),
+      home: const DashboardScreen(),
+    );
+  }
+}
+
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Accessing current theme tokens safely
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Themed Dashboard', style: theme.textTheme.titleLarge),
+        backgroundColor: theme.colorScheme.surface,
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "PROFILES",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.primary, // Using theme color token
+                letterSpacing: 1.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            
+            // 2. Custom Layout Wrapper using theme properties
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: theme.colorScheme.outlineVariant),
+              ),
+              child: const Column(
+                children: [
+                  CustomUserAvatar(initials: "JD", name: "John Doe"),
+                  SizedBox(height: 12),
+                  CustomUserAvatar(initials: "AS", name: "Alice Smith"),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomUserAvatar extends StatelessWidget {
+  final String initials;
+  final String name;
+
+  const CustomUserAvatar({
+    super.key,
+    required this.initials,
+    required this.name,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Fetching inherited theme styles dynamically inside the custom widget
+    final theme = Theme.of(context);
+
+    return Row(
+      children: [
+        // Styled CircleAvatar leveraging primary container colors
+        CircleAvatar(
+          radius: 22,
+          backgroundColor: theme.colorScheme.primaryContainer,
+          child: Text(
+            initials,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: theme.colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ),
+        const SizedBox(width: 24),
+        
+        // Custom text overrides layered on top of structural body styles
+        Text(
+          name,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+            fontSize: 15,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
