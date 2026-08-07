@@ -38,7 +38,7 @@ class DashboardScreen extends StatelessWidget {
           Text("USERS"),
           Row(
             children: [
-              CustomUserAvatar(initials: "VEC", name: "John VAAGDEVI ENGINEERING COLLEGE"),
+              CustomUserAvatar(initials: "VEC", name: "VAAGDEVI ENGINEERING COLLEGE"),
               CustomUserAvatar(initials: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING"),
             ],
           ),
