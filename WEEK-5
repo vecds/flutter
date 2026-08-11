@@ -210,7 +210,6 @@ class CounterScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-       licked
         onPressed: () => context.read<CounterModel>().increment(),
         child: const Icon(Icons.add),
       ),
