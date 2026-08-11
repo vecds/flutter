@@ -151,9 +151,9 @@ class DashboardScreen extends StatelessWidget {
               ),
               child: const Column(
                 children: [
-                  CustomUserAvatar(initials: "JD", name: "John Doe"),
+                  CustomUserAvatar(initials: "VEC", name: "VAAGDEVI ENGINEERING COLLEGE"),
                   SizedBox(height: 12),
-                  CustomUserAvatar(initials: "AS", name: "Alice Smith"),
+                  CustomUserAvatar(initials: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING"),
                 ],
               ),
             ),
