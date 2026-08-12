@@ -1,3 +1,210 @@
 7. a) Design a form with various input fields.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const MyForm(),
+    );
+  }
+}
+
+class MyForm extends StatefulWidget {
+  const MyForm({super.key});
+
+  @override
+  State<MyForm> createState() => _MyFormState();
+}
+
+class _MyFormState extends State<MyForm> {
+  String name = "";
+  String email = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Simple Form"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Name",
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  name = value;
+                });
+              },
+            ),
+
+            const SizedBox(height: 15),
+
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  email = value;
+                });
+              },
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                setState(() {});
+              },
+              child: const Text("Submit"),
+            ),
+
+            const SizedBox(height: 20),
+
+            Text("Name: $name"),
+            Text("Email: $email"),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
 b) Implement form validation and error handling.
 
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => FormProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class FormProvider extends ChangeNotifier {
+  String name = "";
+  String email = "";
+
+  String? nameError;
+  String? emailError;
+
+  void setName(String value) {
+    name = value;
+    nameError = null;
+    notifyListeners();
+  }
+
+  void setEmail(String value) {
+    email = value;
+    emailError = null;
+    notifyListeners();
+  }
+
+  bool validateForm() {
+    nameError = null;
+    emailError = null;
+
+    if (name.isEmpty) {
+      nameError = "Please enter your name";
+    }
+
+    if (email.isEmpty) {
+      emailError = "Please enter your email";
+    } else if (!email.contains("@")) {
+      emailError = "Enter a valid email";
+    }
+
+    notifyListeners();
+
+    return nameError == null && emailError == null;
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const MyForm(),
+    );
+  }
+}
+
+class MyForm extends StatelessWidget {
+  const MyForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Provider Form"),
+      ),
+      body: Consumer<FormProvider>(
+        builder: (context, form, child) {
+          return Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "Name",
+                    border: const OutlineInputBorder(),
+                    errorText: form.nameError,
+                  ),
+                  onChanged: form.setName,
+                ),
+
+                const SizedBox(height: 20),
+
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    border: const OutlineInputBorder(),
+                    errorText: form.emailError,
+                  ),
+                  onChanged: form.setEmail,
+                ),
+
+                const SizedBox(height: 20),
+
+                ElevatedButton(
+                  onPressed: () {
+                    if (form.validateForm()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Form submitted successfully"),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text("Submit"),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
