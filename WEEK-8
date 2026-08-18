@@ -2,7 +2,8 @@
 b) Experiment with different types of animations (fade, slide, etc.)
 
 
-a)
+a)IMPLICIT ANIMATION: 
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -80,6 +81,96 @@ class _ImplicitAnimationDemoState extends State<ImplicitAnimationDemo> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+EXPLICIT ANIMATIONS:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(
+          child: PulseButton(),
+        ),
+      ),
+    );
+  }
+}
+
+class PulseButton extends StatefulWidget {
+  const PulseButton({super.key});
+
+  @override
+  State<PulseButton> createState() => _PulseButtonState();
+}
+
+class _PulseButtonState extends State<PulseButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 1. Initialize the controller to repeat indefinitely
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    // 2. Define the size scale scale variance (from 100% to 115%)
+    _animation = Tween<double>(begin: 1.0, end: 1.15).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    // 3. Make the animation loop back and forth automatically
+    _controller.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // Always clear controller resources
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: _animation,
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.red.withOpacity(0.5),
+              blurRadius: 20,
+              spreadRadius: 10,
+            ),
+          ],
+        ),
+        child: const Icon(
+          Icons.mic,
+          color: Colors.white,
+          size: 40,
         ),
       ),
     );
