@@ -1,4 +1,5 @@
 7. a) Design a form with various input fields.
+b) Implement form validation and error handling.
 
 import 'package:flutter/material.dart';
 
@@ -158,7 +159,7 @@ class MyForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Provider Form"),
+        title: const Text("Form Validation"),
       ),
       body: Consumer<FormProvider>(
         builder: (context, form, child) {
