@@ -32,7 +32,7 @@ class _MyFormState extends State<MyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Simple Form"),
+        title: const Text("Login Form"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
