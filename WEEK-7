@@ -1,5 +1,9 @@
 7. a) Design a form with various input fields.
 b) Implement form validation and error handling.
+Forms in Flutter are managed using the Form widget, which acts as a container for grouping,
+  validating, and saving multiple input fields. To manage the form's state and trigger actions
+  globally, you must assign a GlobalKey<FormState> to its key property.
+
 
 import 'package:flutter/material.dart';
 
@@ -205,6 +209,185 @@ class MyForm extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      home: const FormDemoPage(),
+    );
+  }
+}
+
+class FormDemoPage extends StatefulWidget {
+  const FormDemoPage({super.key});
+
+  @override
+  State<FormDemoPage> createState() => _FormDemoPageState();
+}
+
+class _FormDemoPageState extends State<FormDemoPage> {
+  // Key to track, validate, and save the form state
+  final _formKey = GlobalKey<FormState>();
+
+  // Controllers to capture user input text
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  // State variable to toggle password visibility
+  bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    // Clean up controllers when the widget is destroyed
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _submitForm() {
+    // Triggers validation for every TextFormField inside the Form
+    if (_formKey.currentState!.validate()) {
+      // Success flow
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Success! Email: ${_emailController.text}'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } else {
+      // Failure flow (errors automatically paint on the screen)
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fix the errors in the form.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Form'),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                // Validates fields automatically after the user starts typing
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Account Login',
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // --- Email Field ---
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        labelText: 'Email Address',
+                        
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null ) {
+                          return 'Email cannot be empty';
+                        }
+                        // Simple regex check for email format
+                        final emailex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                        if (!emailex.hasMatch(value)) {
+                          return 'Enter a valid email address';
+                        }
+                        return null; // Input is valid
+                      },
+                    ),
+                    const SizedBox(height: 20),
+
+                    // --- Password Field ---
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: _obscurePassword,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        border: const OutlineInputBorder(),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password cannot be empty';
+                        }
+                        if (value.length < 6) {
+                          return 'Password must be at least 6 characters';
+                        }
+                        return null; // Input is valid
+                      },
+                    ),
+                    const SizedBox(height: 30),
+
+                    // --- Submit Button ---
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: _submitForm,
+                       style: ElevatedButton.styleFrom(
+                         backgroundColor: Theme.of(context).colorScheme.primary,
+                          foregroundColor: Colors.white,
+                       ),
+                        child: const Text(
+                          'SUBMIT',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
