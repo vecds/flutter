@@ -122,19 +122,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const RotationDemo(),
+      home: const RotationAnimation(),
     );
   }
 }
 
-class RotationDemo extends StatefulWidget {
-  const RotationDemo({super.key});
+class RotationAnimation extends StatefulWidget {
+  const RotationAnimation({super.key});
 
   @override
-  State<RotationDemo> createState() => _RotationDemoState();
+  State<RotationAnimation> createState() => _RotationAnimationState();
 }
 
-class _RotationDemoState extends State<RotationDemo>
+class _RotationAnimationState extends State<RotationAnimation>
     with SingleTickerProviderStateMixin {
 
   late AnimationController controller;
@@ -145,7 +145,7 @@ class _RotationDemoState extends State<RotationDemo>
 
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 0),
+      duration: const Duration(seconds: 2),
     );
   }
 
