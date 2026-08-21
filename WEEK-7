@@ -232,19 +232,19 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const FormDemoPage(),
+      home: const FormPage(),
     );
   }
 }
 
-class FormDemoPage extends StatefulWidget {
-  const FormDemoPage({super.key});
+class FormPage extends StatefulWidget {
+  const FormPage({super.key});
 
   @override
-  State<FormDemoPage> createState() => _FormDemoPageState();
+  State<FormPage> createState() => _FormPageState();
 }
 
-class _FormDemoPageState extends State<FormDemoPage> {
+class _FormPageState extends State<FormPage> {
   // Key to track, validate, and save the form state
   final _formKey = GlobalKey<FormState>();
 
